@@ -1,0 +1,10 @@
+@tailwind base;
+/* Write your global styles here, in PostCSS syntax */
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.btn {
+		@apply inline-block px-5 py-3 rounded-lg shadow-lg hover:-translate-y-0.5 transform transition focus:outline-none focus:ring focus:ring-offset-2 focus:ring-opacity-50 text-white uppercase font-semibold tracking-wider text-sm sm:text-base;
+	}
+}
