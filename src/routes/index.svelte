@@ -12,9 +12,38 @@
 
 <script>
 	import DestinationCard from '$lib/DestinationCard.svelte';
+	import {clickOutside} from '../lib/clickOutsideElement';
 
 	export let destinations;
+
+	let menuVisible = true;
 </script>
+
+<!-- Nav bar -->
+
+<header use:clickOutside on:click_outside={() => menuVisible = !menuVisible}>
+	<nav class="px-6">
+		<div class="mt-6 flex justify-between">
+			<img class="h-10" src="/img/logo-brand.svg" alt="Workcation" />
+			<button on: on:click={() => menuVisible = !menuVisible} class="focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-brand-light rounded" alt="Menu Button">
+				{#if menuVisible}
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-10 text-brand hover:text-brand-light h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+					</svg>
+				{:else}
+					<svg class="text-brand hover:text-brand-light h-10" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+					</svg>
+				{/if}
+			</button>
+		</div>
+		<ul class="py-3 font-headline mt-4 {menuVisible ? 'flex' : 'hidden'} flex-col space-y-2">
+			<li class="hover:bg-brand hover:text-white p-2 rounded-lg shadow-sm"><a class="inline-block w-full" href="/">All Destinations</a></li>
+			<li class="hover:bg-brand hover:text-white p-2 rounded-lg shadow-sm"><a class="inline-block w-full" href="/">About</a></li>
+			<li class="hover:bg-brand hover:text-white p-2 rounded-lg shadow-sm"><a class="inline-block w-full" href="/">Contact</a></li>
+		</ul>
+	</nav>
+</header>
 
 <!-- Hero Section -->
 
@@ -24,7 +53,7 @@
 			class="p-8 py-12 max-w-md mx-auto sm:max-w-xl lg:px-12 lg:py-24 lg:max-w-full xl:mr-0 2xl:col-span-2"
 		>
 			<div class="xl:max-w-xl">
-				<img class="h-10" src="/img/logo-brand.svg" alt="Workcation" />
+				
 				<img
 					class="mt-6 rounded-lg shadow-xl sm:mt-8 sm:h-64 sm:w-full sm:object-cover object-center lg:hidden"
 					src="/img/beach-work.jpg"
